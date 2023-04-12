@@ -11,8 +11,8 @@ class PersonsServices {
         return ResponseEntity.ok("Get All")
     }
 
-    fun create(dto:PersonDto):ResponseEntity<String>{
-        return ResponseEntity.status(HttpStatus.CREATED).build()
+    fun create(dto:PersonDto):ResponseEntity<PersonDto>{
+        return ResponseEntity.status(HttpStatus.CREATED).body(dto)
     }
 
     fun getOneByPhone(phone:String):ResponseEntity<String>{

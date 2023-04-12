@@ -12,7 +12,7 @@ class AdviceController {
     @ExceptionHandler
     fun processValidationError(ex:MethodArgumentNotValidException) =  ResponseEntity
                 .badRequest()
-                .body(ex.bindingResult.allErrors.toString())
+                .body(ex.bindingResult.allErrors.toString() )
 
 
 
