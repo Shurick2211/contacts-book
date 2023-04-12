@@ -8,7 +8,7 @@ import javax.validation.ConstraintValidatorContext
 import javax.validation.Payload
 import kotlin.reflect.KClass
 
-@Target(AnnotationTarget.FIELD)
+@Target(AnnotationTarget.FIELD, AnnotationTarget.VALUE_PARAMETER)
 @MustBeDocumented
 @Constraint(validatedBy = [PhoneValidator::class])
 annotation class PhoneValidation(

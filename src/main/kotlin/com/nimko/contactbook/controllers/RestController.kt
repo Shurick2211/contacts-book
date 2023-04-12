@@ -2,6 +2,7 @@ package com.nimko.contactbook.controllers
 
 import com.nimko.contactbook.dto.PersonDto
 import com.nimko.contactbook.services.PersonsServices
+import com.nimko.contactbook.utils.PhoneValidation
 import io.swagger.v3.oas.annotations.OpenAPIDefinition
 import io.swagger.v3.oas.annotations.info.Contact
 import io.swagger.v3.oas.annotations.info.Info
@@ -12,6 +13,7 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
+import javax.validation.constraints.Email
 import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 @RestController
@@ -25,6 +27,7 @@ Info(
 )
 )
 @Tag(name = "Controller",description = "My ToDo Controller")
+@Validated
 class RestController @Autowired constructor(
     val service:PersonsServices
 ){
@@ -38,11 +41,11 @@ class RestController @Autowired constructor(
     = service.create(dto)
 
     @GetMapping("/{email}")
-    fun getOneByEmail(@PathVariable email:String):ResponseEntity<String>
+    fun getOneByEmail(@PathVariable @Email email:String):ResponseEntity<String>
     = service.getOneByEmail(email)
 
     @GetMapping("/phones")
-    fun getOneByPhone(@RequestParam("phone") phone:String):ResponseEntity<String>
+    fun getOneByPhone( @RequestParam("phone") @PhoneValidation phone:String):ResponseEntity<String>
     = service.getOneByPhone(phone)
 
 }
