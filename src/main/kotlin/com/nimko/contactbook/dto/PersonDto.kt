@@ -2,7 +2,6 @@ package com.nimko.contactbook.dto
 
 import com.nimko.contactbook.utils.PhoneValidation
 import io.swagger.v3.oas.annotations.media.Schema
-import org.hibernate.validator.constraints.UniqueElements
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
 import javax.validation.constraints.Email

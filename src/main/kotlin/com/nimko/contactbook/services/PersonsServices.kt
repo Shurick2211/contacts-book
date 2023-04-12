@@ -8,7 +8,6 @@ import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
-import javax.validation.ConstraintViolationException
 
 
 @Service

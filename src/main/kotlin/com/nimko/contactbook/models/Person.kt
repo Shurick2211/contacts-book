@@ -1,7 +1,6 @@
 package com.nimko.contactbook.models
 
 
-import org.hibernate.validator.constraints.UniqueElements
 import java.time.LocalDateTime
 import javax.persistence.*
 
