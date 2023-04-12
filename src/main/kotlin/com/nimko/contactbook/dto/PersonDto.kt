@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 
-@Schema(name = "Схема Dto", description = "DTO for use")
+@Schema(name = "Schema DTO", description = "DTO for use in a client app.")
 data class PersonDto(
     val firstName : String,
     val lastName : String,
@@ -19,6 +19,6 @@ data class PersonDto(
     val email : String,
     val app : String,
     @DateTimeFormat(pattern = "yyyy-MM-dd['T'HH:mm:ss.SSS'Z']")
-    val date : LocalDateTime
+    val date : LocalDateTime?
 ) {
 }

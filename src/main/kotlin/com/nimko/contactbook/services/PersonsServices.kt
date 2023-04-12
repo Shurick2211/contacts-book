@@ -8,6 +8,7 @@ import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
+import java.time.LocalDateTime
 
 
 @Service
@@ -20,7 +21,14 @@ class PersonsServices @Autowired constructor(
 
     fun create(dto:PersonDto): ResponseEntity<Person> {
         if (db.findByEmail(dto.email).isEmpty && db.findByPhoneNumber(dto.phoneNumber).isEmpty){
-            val person = db.save(Person(null,dto.firstName,dto.lastName,dto.phoneNumber, dto.email, dto.app,dto.date))
+            var date:LocalDateTime
+            if (dto.date == null) {
+                date = LocalDateTime.now()
+            } else {
+                date = dto.date
+            }
+            val person = db.save(
+                Person(null,dto.firstName,dto.lastName,dto.phoneNumber, dto.email, dto.app, date))
             return ResponseEntity.status(HttpStatus.CREATED).body(person)
         } else throw Exception("Person is in database with this phone number or email")
     }

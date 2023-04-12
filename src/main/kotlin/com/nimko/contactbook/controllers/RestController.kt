@@ -33,27 +33,29 @@ class RestController @Autowired constructor(
 ){
 
     @GetMapping
-    @Operation(summary = "Get all Contacts", description = "В цьому методі можна отримати всіх Contacts")
+    @Operation(summary = "Get all Contacts",
+        description = "You can get all Contacts in this method from Database.")
     fun getAll() : ResponseEntity<List<Person>>
     = service.getAll()
 
     @PostMapping
-    @Operation(summary = "Create Contact", description = "В цьому методі створюється Contact, " +
-            "email & phone number мають бути унікальні.")
+    @Operation(summary = "Create Contact",
+        description = "You can create Contact, in this method." +
+            "The email & phone number of it have to be unique.")
     fun create(@Validated @RequestBody dto: PersonDto): ResponseEntity<Person>
     = service.create(dto)
 
     @GetMapping("/{email}")
     @PostMapping
-    @Operation(summary = "Get Contact by email", description = "В цьому методі отримуємо Contact, " +
-            "маючи email.")
+    @Operation(summary = "Get Contact by email",
+        description = "You can get a Contact in this method from Database by email.")
     fun getOneByEmail(@PathVariable @Email email:String):ResponseEntity<Person>
     = service.getOneByEmail(email)
 
     @GetMapping("/phones")
     @PostMapping
-    @Operation(summary = "Get Contact by phone number", description = "В цьому методі отримуємо Contact, " +
-            "маючи phone number.")
+    @Operation(summary = "Get Contact by phone number",
+        description = "You can get a Contact in this method from Database by phone number.")
     fun getOneByPhone( @RequestParam("phone") @PhoneValidation phone:String):ResponseEntity<Person>
     = service.getOneByPhone(phone)
 

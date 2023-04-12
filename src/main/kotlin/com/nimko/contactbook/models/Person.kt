@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 import java.time.LocalDateTime
 import javax.persistence.*
 
-@Schema(name = "Схема Entity", description = "Entity for use")
+@Schema(name = "Schema Entity", description = "Entity for use in database.")
 @Entity
 data class Person(
     @Id
@@ -17,7 +17,7 @@ data class Person(
     val phoneNumber: String,
     val email: String,
     val app: String,
-    val date: LocalDateTime
+    val date: LocalDateTime?
 ) {
 
 
