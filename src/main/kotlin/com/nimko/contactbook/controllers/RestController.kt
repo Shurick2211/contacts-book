@@ -1,6 +1,7 @@
 package com.nimko.contactbook.controllers
 
 import com.nimko.contactbook.dto.PersonDto
+import com.nimko.contactbook.models.Person
 import com.nimko.contactbook.services.PersonsServices
 import com.nimko.contactbook.utils.PhoneValidation
 import io.swagger.v3.oas.annotations.OpenAPIDefinition
@@ -33,19 +34,19 @@ class RestController @Autowired constructor(
 ){
 
     @GetMapping
-    fun getAll() : ResponseEntity<String>
+    fun getAll() : ResponseEntity<List<Person>>
     = service.getAll()
 
     @PostMapping
-    fun create(@Validated @RequestBody dto: PersonDto):ResponseEntity<PersonDto>
+    fun create(@Validated @RequestBody dto: PersonDto): ResponseEntity<Person>
     = service.create(dto)
 
     @GetMapping("/{email}")
-    fun getOneByEmail(@PathVariable @Email email:String):ResponseEntity<String>
+    fun getOneByEmail(@PathVariable @Email email:String):ResponseEntity<Person>
     = service.getOneByEmail(email)
 
     @GetMapping("/phones")
-    fun getOneByPhone( @RequestParam("phone") @PhoneValidation phone:String):ResponseEntity<String>
+    fun getOneByPhone( @RequestParam("phone") @PhoneValidation phone:String):ResponseEntity<Person>
     = service.getOneByPhone(phone)
 
 }

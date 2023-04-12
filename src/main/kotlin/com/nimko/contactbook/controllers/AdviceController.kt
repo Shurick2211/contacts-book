@@ -22,6 +22,11 @@ class AdviceController {
         .body(ex.message)
 
     @ExceptionHandler
+    fun processValidationVarError(ex:Exception) =  ResponseEntity
+        .badRequest()
+        .body(ex.message)
+
+    @ExceptionHandler
     fun  processValidationError(ex:NotFoundException):ResponseEntity<String?> = ResponseEntity
         .notFound().build()
 
