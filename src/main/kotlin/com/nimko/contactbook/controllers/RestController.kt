@@ -5,6 +5,7 @@ import com.nimko.contactbook.models.Person
 import com.nimko.contactbook.services.PersonsServices
 import com.nimko.contactbook.utils.PhoneValidation
 import io.swagger.v3.oas.annotations.OpenAPIDefinition
+import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.info.Contact
 import io.swagger.v3.oas.annotations.info.Info
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -22,28 +23,37 @@ Info(
     title = "Contacts Book",
     version = "0.0.1",
     description = "My Test API for UpUp",
-    contact = Contact(name = "Shurick", email = "shurick2211@gmail.com")
+    contact = Contact(name = "Shurick", email = "shurick2211@gmail.com", url = "https://github.com/Shurick2211/contacts-book.git")
 )
 )
-@Tag(name = "Controller",description = "My ToDo Controller")
+@Tag(name = "Controller",description = "My Contacts-book Controller")
 @Validated
 class RestController @Autowired constructor(
     val service:PersonsServices
 ){
 
     @GetMapping
+    @Operation(summary = "Get all Contacts", description = "В цьому методі можна отримати всіх Contacts")
     fun getAll() : ResponseEntity<List<Person>>
     = service.getAll()
 
     @PostMapping
+    @Operation(summary = "Create Contact", description = "В цьому методі створюється Contact, " +
+            "email & phone number мають бути унікальні.")
     fun create(@Validated @RequestBody dto: PersonDto): ResponseEntity<Person>
     = service.create(dto)
 
     @GetMapping("/{email}")
+    @PostMapping
+    @Operation(summary = "Get Contact by email", description = "В цьому методі отримуємо Contact, " +
+            "маючи email.")
     fun getOneByEmail(@PathVariable @Email email:String):ResponseEntity<Person>
     = service.getOneByEmail(email)
 
     @GetMapping("/phones")
+    @PostMapping
+    @Operation(summary = "Get Contact by phone number", description = "В цьому методі отримуємо Contact, " +
+            "маючи phone number.")
     fun getOneByPhone( @RequestParam("phone") @PhoneValidation phone:String):ResponseEntity<Person>
     = service.getOneByPhone(phone)
 

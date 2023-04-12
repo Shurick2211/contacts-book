@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 
-@Schema(name = "Схема ToDoDto", description = "DTO for use")
+@Schema(name = "Схема Dto", description = "DTO for use")
 data class PersonDto(
     val firstName : String,
     val lastName : String,
