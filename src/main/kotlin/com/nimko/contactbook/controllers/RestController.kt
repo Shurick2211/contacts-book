@@ -21,12 +21,14 @@ import javax.validation.constraints.Email
 @OpenAPIDefinition(info =
 Info(
     title = "Contacts Book",
-    version = "0.0.1",
+    version = "0.0.2",
     description = "My Test API for UpUp",
-    contact = Contact(name = "Shurick", email = "shurick2211@gmail.com", url = "https://github.com/Shurick2211/contacts-book.git")
+    contact = Contact(name = "Olexandr Nimko",
+        email = "shurick2211@gmail.com",
+        url = "https://github.com/Shurick2211/contacts-book.git")
 )
 )
-@Tag(name = "Controller",description = "My Contacts-book Controller")
+@Tag(name = "REST Controller",description = "My Contacts-book Controller")
 @Validated
 class RestController @Autowired constructor(
     val service:PersonsServices
