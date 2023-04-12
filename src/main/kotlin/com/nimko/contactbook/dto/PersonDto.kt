@@ -1,21 +1,18 @@
 package com.nimko.contactbook.dto
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.nimko.contactbook.utils.PhoneValidation
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
 import javax.validation.constraints.Email
-import javax.validation.constraints.NotEmpty
+import javax.validation.constraints.NotBlank
 
 data class PersonDto(
-    @JsonProperty("first_name")
     val firstName : String,
-    @JsonProperty("last_name")
     val lastName : String,
-    @NotEmpty
-    @JsonProperty("phone_number")
+    @field:PhoneValidation
     val phoneNumber : String,
-    @NotEmpty
-    @Email
+    @field:NotBlank(message = "Empty email")
+    @field:Email
     val email : String,
     val app : String,
     @DateTimeFormat(pattern = "yyyy-MM-dd['T'HH:mm:ss.SSS'Z']")

@@ -26,6 +26,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springdoc:springdoc-openapi-ui:1.7.0")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("com.googlecode.libphonenumber:libphonenumber:8.13.9")
 
 }
 

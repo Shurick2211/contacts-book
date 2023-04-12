@@ -8,8 +8,10 @@ import io.swagger.v3.oas.annotations.info.Info
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.bind.annotation.RestController
+import javax.validation.Valid
 import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 @RestController
@@ -32,7 +34,7 @@ class RestController @Autowired constructor(
     = service.getAll()
 
     @PostMapping
-    fun create(dto: PersonDto):ResponseEntity<PersonDto>
+    fun create(@Validated @RequestBody dto: PersonDto):ResponseEntity<PersonDto>
     = service.create(dto)
 
     @GetMapping("/{email}")
