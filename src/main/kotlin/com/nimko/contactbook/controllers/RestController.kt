@@ -2,7 +2,7 @@ package com.nimko.contactbook.controllers
 
 import com.nimko.contactbook.dto.PersonDto
 import com.nimko.contactbook.models.Person
-import com.nimko.contactbook.services.PersonsServices
+import com.nimko.contactbook.services.PersonServices
 import com.nimko.contactbook.utils.PhoneValidation
 import io.swagger.v3.oas.annotations.OpenAPIDefinition
 import io.swagger.v3.oas.annotations.Operation
@@ -31,7 +31,7 @@ Info(
 @Tag(name = "REST Controller",description = "My Contacts-book Controller")
 @Validated
 class RestController @Autowired constructor(
-    val service:PersonsServices
+    val service:PersonServices
 ){
 
     @GetMapping
@@ -48,14 +48,12 @@ class RestController @Autowired constructor(
     = service.create(dto)
 
     @GetMapping("/{email}")
-    @PostMapping
     @Operation(summary = "Get Contact by email",
         description = "You can get a Contact in this method from Database by email.")
     fun getOneByEmail(@PathVariable @Email email:String):ResponseEntity<Person>
     = service.getOneByEmail(email)
 
     @GetMapping("/phones")
-    @PostMapping
     @Operation(summary = "Get Contact by phone number",
         description = "You can get a Contact in this method from Database by phone number.")
     fun getOneByPhone( @RequestParam("phone") @PhoneValidation phone:String):ResponseEntity<Person>

@@ -12,7 +12,7 @@ import java.time.LocalDateTime
 
 
 @Service
-class PersonsServices @Autowired constructor(
+class PersonServices @Autowired constructor(
     val db:PersonsRepo
 ){
     fun getAll():ResponseEntity<List<Person>>{
@@ -21,12 +21,7 @@ class PersonsServices @Autowired constructor(
 
     fun create(dto:PersonDto): ResponseEntity<Person> {
         if (db.findByEmail(dto.email).isEmpty && db.findByPhoneNumber(dto.phoneNumber).isEmpty){
-            var date:LocalDateTime
-            if (dto.date == null) {
-                date = LocalDateTime.now()
-            } else {
-                date = dto.date
-            }
+            var date = dto.date ?: LocalDateTime.now()
             val person = db.save(
                 Person(null,dto.firstName,dto.lastName,dto.phoneNumber, dto.email, dto.app, date))
             return ResponseEntity.status(HttpStatus.CREATED).body(person)

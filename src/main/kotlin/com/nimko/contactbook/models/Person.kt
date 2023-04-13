@@ -7,17 +7,17 @@ import javax.persistence.*
 
 @Schema(name = "Schema Entity", description = "Entity for use in database.")
 @Entity
-data class Person(
+open class Person(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     var id:Long? = null,
-    val firstName: String,
-    val lastName: String,
-    val phoneNumber: String,
-    val email: String,
-    val app: String,
-    val date: LocalDateTime?
+    var firstName: String,
+    var lastName: String,
+    var phoneNumber: String,
+    var email: String,
+    var app: String,
+    var date: LocalDateTime?
 ) {
 
 
