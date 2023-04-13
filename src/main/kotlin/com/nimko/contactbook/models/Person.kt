@@ -11,13 +11,13 @@ open class Person(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    var id:Long? = null,
-    var firstName: String,
-    var lastName: String,
-    var phoneNumber: String,
-    var email: String,
-    var app: String,
-    var date: LocalDateTime?
+    open var id:Long? = null,
+    open var firstName: String,
+    open var lastName: String,
+    open var phoneNumber: String,
+    open var email: String,
+    open var app: String,
+    open var date: LocalDateTime?
 ) {
 
 
