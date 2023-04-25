@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank
 
 @Schema(name = "Schema DTO", description = "DTO for use in a client app.")
 data class PersonDto(
+    val id:Long?,
     val firstName : String,
     val lastName : String,
     @field:NotBlank(message = "Empty phone number!")

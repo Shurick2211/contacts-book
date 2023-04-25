@@ -21,7 +21,7 @@ import javax.validation.constraints.Email
 @OpenAPIDefinition(info =
 Info(
     title = "Contacts Book",
-    version = "0.0.2",
+    version = "0.1.1",
     description = "My Test API for UpUp",
     contact = Contact(name = "Olexandr Nimko",
         email = "shurick2211@gmail.com",
@@ -46,6 +46,18 @@ class RestController @Autowired constructor(
             "The email & phone number of it have to be unique.")
     fun create(@Validated @RequestBody dto: PersonDto): ResponseEntity<Person>
     = service.create(dto)
+
+    @PutMapping
+    @Operation(summary = "Update Contact",
+        description = "You can update Contact, in this method." +
+                "The email & phone number of it have to be unique.")
+    fun update(@Validated @RequestBody dto: PersonDto): ResponseEntity<Person>
+            = service.update(dto)
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Delete Contact",
+        description = "You can delete Contact, in this method.")
+    fun delete(@PathVariable id:Long): ResponseEntity<Any>
+        = service.delete(id)
 
     @GetMapping("/{email}")
     @Operation(summary = "Get Contact by email",

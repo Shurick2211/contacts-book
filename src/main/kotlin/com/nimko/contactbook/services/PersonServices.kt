@@ -31,14 +31,34 @@ class PersonServices @Autowired constructor(
     fun getOneByPhone(phone:String):ResponseEntity<Person>{
         val person = db.findByPhoneNumber(phone).orElseThrow(::NotFoundException)
         return ResponseEntity.ok(person)
-
-
-
     }
 
     fun getOneByEmail(email:String):ResponseEntity<Person>{
         val person = db.findByEmail(email).orElseThrow(::NotFoundException)
         return ResponseEntity.ok(person)
+    }
+
+    fun update(dto: PersonDto): ResponseEntity<Person> {
+        val person =
+            if(db.findById(dto.id!!).isPresent) {
+                Person(
+                    dto.id,
+                    dto.firstName,
+                    dto.lastName,
+                    dto.phoneNumber,
+                    dto.email,
+                    dto.app,
+                    LocalDateTime.now()
+                )
+            } else {
+                throw NotFoundException()
+            }
+       return ResponseEntity.status(HttpStatus.ACCEPTED).body(person)
+    }
+
+    fun delete(id:Long): ResponseEntity<Any>{
+        db.deleteById(id)
+        return ResponseEntity.ok().build()
     }
 }
 
