@@ -17,7 +17,7 @@ open class Person(
     open var phoneNumber: String,
     open var email: String,
     open var app: String,
-    open var date: LocalDateTime?
+    open var date: LocalDateTime?,
 ) {
 
 
