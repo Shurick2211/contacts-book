@@ -41,6 +41,7 @@ class PersonServices @Autowired constructor(
     fun update(dto: PersonDto): ResponseEntity<Person> {
         val person =
             if(db.findById(dto.id!!).isPresent) {
+                db.save(
                 Person(
                     dto.id,
                     dto.firstName,
@@ -49,7 +50,7 @@ class PersonServices @Autowired constructor(
                     dto.email,
                     dto.app,
                     LocalDateTime.now()
-                )
+                ))
             } else {
                 throw NotFoundException()
             }
@@ -57,7 +58,11 @@ class PersonServices @Autowired constructor(
     }
 
     fun delete(id:Long): ResponseEntity<Any>{
-        db.deleteById(id)
+        if(db.findById(id).isPresent) {
+            db.deleteById(id)
+        } else {
+            throw NotFoundException()
+        }
         return ResponseEntity.ok().build()
     }
 }
